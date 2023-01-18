@@ -1,0 +1,2 @@
+git [platform:rpm]
+skopeo [platform:rpm]
