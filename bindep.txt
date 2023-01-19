@@ -1,2 +1,3 @@
 git [platform:rpm]
 skopeo [platform:rpm]
+podman [platform:rpm]

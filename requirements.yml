@@ -2,5 +2,3 @@
 collections:
   - awx.awx
   - community.general
-  - community.kubernetes
-  - kubernetes.core
