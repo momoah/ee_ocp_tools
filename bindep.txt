@@ -1,5 +1,6 @@
 git [platform:rpm]
 skopeo [platform:rpm]
 podman [platform:rpm]
+crun [platform:rpm]
 python38-requests [platform:rhel-8]
 python38-pyyaml [platform:rhel-8]
