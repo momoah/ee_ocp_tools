@@ -1,9 +1,11 @@
 # Custom_Ansible_EE
 
-# Ensure you run this on the controller, and ensure you have the following options:
-# [root@aap ~]# cat /var/lib/awx/venv/awx/lib/python3.9/site-packages/awx/settings/defaults.py | grep privileged
-# DEFAULT_CONTAINER_RUN_OPTIONS = ['--privileged','--network', 'slirp4netns:enable_ipv6=true']
-# from: https://github.com/sean-m-sullivan/ee_definition_config#running-this-on-a-container
+Ensure you run this on the controller, and ensure you have the following options:
+```
+[root@aap ~]# cat /var/lib/awx/venv/awx/lib/python3.9/site-packages/awx/settings/defaults.py | grep privileged
+DEFAULT_CONTAINER_RUN_OPTIONS = ['--privileged','--network', 'slirp4netns:enable_ipv6=true']
+from: https://github.com/sean-m-sullivan/ee_definition_config#running-this-on-a-container
+```
 
 Followed instructions from:
 https://www.ansible.com/blog/the-anatomy-of-automation-execution-environments
