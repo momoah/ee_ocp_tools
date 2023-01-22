@@ -84,13 +84,3 @@ Then run this:
 ```
 podman build -f context/Containerfile -t ee_ocp_tools:1.3 context
 ```
-
-### Below is pending checking
-
-Run:
-# ansible-builder build  -t ee_ocp_tools:1.0
-OR
-# podman build -f context/Containerfile -t ee_ocp_tools:1.0 context
-To explore the execution environment image:
-
-ansible-navigator images -m interactive -pp never --eei localhost/ee_ocp_tools:1.0
