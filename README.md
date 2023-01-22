@@ -1,5 +1,11 @@
 # Custom_Ansible_EE
 
+## Updated instructions:
+1. Build the EE under a non-root user, in this case, the podman user on the aap
+2. Not using privileged mode for this, we can build it as non-root user and the container will run as root
+3. Use freshstart.sh and cleanup.sh to get all files copied and to see build instructions
+
+---
 Ensure you run this on the controller, and ensure you have the following options:
 ```
 [root@aap ~]# cat /var/lib/awx/venv/awx/lib/python3.9/site-packages/awx/settings/defaults.py | grep privileged
