@@ -6,6 +6,10 @@ Ensure you run this on the controller, and ensure you have the following options
 DEFAULT_CONTAINER_RUN_OPTIONS = ['--privileged','--network', 'slirp4netns:enable_ipv6=true']
 from: https://github.com/sean-m-sullivan/ee_definition_config#running-this-on-a-container
 ```
+Make sure you login to all registries that will pull images:
+```
+podman login registry.redhat.io
+```
 
 Followed instructions from:
 https://www.ansible.com/blog/the-anatomy-of-automation-execution-environments
@@ -61,7 +65,10 @@ Complete! The build context can be found at: /root/workdir/custom_ansible_ee/con
 
 1 directory, 4 files
 ```
-
+Copy configs and certs:
+```
+cp {certs.pem,containers.conf,podman-containers.conf,registries.conf} context/
+```
 Then copy an existing copy of Containerfile:
 ```
 [root@aap custom_ansible_ee]# cp mycontainerfile context/Containerfile 

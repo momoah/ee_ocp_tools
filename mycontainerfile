@@ -30,16 +30,12 @@ COPY --from=builder /output/ /output/
 RUN /output/install-from-bindep && rm -rf /output/wheels
 # Add custom oc/helm
 RUN curl -Sso oc.tar.gz https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-linux.tar.gz \
- && tar xf oc.tar.gz -C /usr/bin \
+ && tar xf oc.tar.gz -C /usr/bin --no-same-owner\
  && rm oc.tar.gz \
- && chmod +x /usr/bin/oc \
- && chown root: /usr/bin/oc
-RUN curl -Sso helm.tar.gz https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/helm/latest/helm-darwin-amd64.tar.gz \
- && tar xf helm.tar.gz -C /usr/bin \
+ && curl -Sso helm.tar.gz https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/helm/latest/helm-darwin-amd64.tar.gz \
+ && tar xf helm.tar.gz -C /usr/bin --no-same-owner \
  && rm helm.tar.gz \
- && mv /usr/bin/helm-darwin-amd64 /usr/bin/helm \
- && chmod +x /usr/bin/helm \
- && chown root: /usr/bin/helm \
+ && ln -s /usr/bin/helm-darwin-amd64 /usr/bin/helm \
  && useradd podman; \
     echo -e "podman:1:999\npodman:1001:64535" > /etc/subuid; \
     echo -e "podman:1:999\npodman:1001:64535" > /etc/subgid;
@@ -80,6 +76,7 @@ LABEL ansible-execution-environment=true
 ####### Changes to create EE in a disconnected environment
 # Remove ubi repo which tries to reach external links
 RUN rm -f /etc/yum.repos.d/ubi.repo \
- && rm -rf /var/cache /var/log/dnf* /var/log/yum.*
+ && rm -rf /var/cache /var/log/dnf* /var/log/yum.* \
+ && chmod -R +x /usr/bin/ 
 ####### This marks the end of edits for the main image
 
