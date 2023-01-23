@@ -1,20 +1,10 @@
 # Custom_Ansible_EE
 
-## Updated instructions:
-1. Build the EE under a non-root user, in this case, the podman user on the aap
-2. Not using privileged mode for this, we can build it as non-root user and the container will run as root
-3. Use freshstart.sh and cleanup.sh to get all files copied and to see build instructions
-
----
 Ensure you run this on the controller, and ensure you have the following options:
 ```
 [root@aap ~]# cat /var/lib/awx/venv/awx/lib/python3.9/site-packages/awx/settings/defaults.py | grep privileged
 DEFAULT_CONTAINER_RUN_OPTIONS = ['--privileged','--network', 'slirp4netns:enable_ipv6=true']
 from: https://github.com/sean-m-sullivan/ee_definition_config#running-this-on-a-container
-```
-Make sure you login to all registries that will pull images:
-```
-podman login registry.redhat.io
 ```
 
 Followed instructions from:
@@ -84,3 +74,13 @@ Then run this:
 ```
 podman build -f context/Containerfile -t ee_ocp_tools:1.3 context
 ```
+
+### Below is pending checking
+
+Run:
+# ansible-builder build  -t ee_ocp_tools:1.0
+OR
+# podman build -f context/Containerfile -t ee_ocp_tools:1.0 context
+To explore the execution environment image:
+
+ansible-navigator images -m interactive -pp never --eei localhost/ee_ocp_tools:1.0
